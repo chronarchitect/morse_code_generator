@@ -1,5 +1,7 @@
 import pygame
 import time
+import sys
+
 pygame.init()
 
 ONE_UNIT = 0.25
@@ -27,7 +29,12 @@ def verify(string):
 			sys.exit('Error the charcter ' + char + ' cannot be translated to Morse Code')
 
 def main():
-    msg = input('Enter Message : ')
+    if len(sys.argv) == 2:
+        msg = sys.argv[1]
+    elif len(sys.argv) == 1:
+        sys.exit('Too few arguments\nUsage: python morse_sound.py [MESSAGE]')
+    else:
+        sys.exit('Too many arguments\nUsage: python morse_sound.py [MESSAGE]')
     verify(msg)
 
     for char in msg:

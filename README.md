@@ -7,4 +7,5 @@ This Python script takes a message as input and plays the Morse Code while also 
 Python3<br/>
 [Pygame](https://www.pygame.org/docs/) *can be installed via pip*<br/>
 ```python3 -m pip install pygame```
-
+### Usage:
+```python3 morse_sound.py [MESSAGE]```
