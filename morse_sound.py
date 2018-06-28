@@ -56,7 +56,7 @@ def main():
                     time.sleep(3 * ONE_UNIT)
                 time.sleep(ONE_UNIT)
             print(' ', end='', flush=True)
-            time.sleep(2 * ONE_UNIT)
+            time.sleep(3 * ONE_UNIT)
 
 if __name__ == '__main__':
     main()
