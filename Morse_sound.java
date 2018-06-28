@@ -1,4 +1,4 @@
-// Test on Windows 10 and Ubuntu 18.04 on June 29 2018 at 00:11 AM
+// Test on Windows 10 and Ubuntu 18.04 on June 29 2018 at 00:11
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
