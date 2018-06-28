@@ -1,3 +1,4 @@
+// Test on Windows 10 and Ubuntu 18.04 on June 29 2018 at 00:11 AM
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -11,6 +12,7 @@ public class Morse_sound
     static String morse[] = {"._", "_...", "_._.", "_..", ".", ".._.", "__.", "....", "..", ".___", "_._", "._..",
             "__", "_.", "___", ".__.", "__._", "._.", "...", "_", "..__", "..._", ".__", "_.._", 
             "_.__", "__.."};
+	static int ONE_UNIT = 250;
 
     public static void play(String filename)
     {
@@ -28,9 +30,32 @@ public class Morse_sound
 
     public static void main(String[] args)throws Exception
     {
-        System.out.print("\nEnter a message : ");
-        String s = ((new BufferedReader(new InputStreamReader(System.in))).readLine()).toUpperCase();
-        String code = "";
+	    final String os = System.getProperty("os.name");
+	    String home = System.getProperty("user.home");
+
+	    // inserts correct file path separator on *nix and Windows
+	    // works on *nix and Windows
+	    java.nio.file.Path path = java.nio.file.Paths.get(home, "sound");	
+			// *.wav files to be stored in "sound" folder in the home directory
+            // Windows - C:\Users\USERNAME\sound\ (in the drive where Windows is installed
+			// *nix - /home/USERNAME/sound/
+	    //boolean directoryExists = java.nio.file.Files.exists(path);
+	    home = path + "";
+
+	    if (os.equals("Windows"))
+		    home += "\\";
+	    else
+		    home += "/";
+
+	    String s, code = "";
+	    if (args.length==0)	 // when user didn't pass a command line argument
+	    {
+	        System.out.print("\nEnter a message : ");
+        	s = ((new BufferedReader(new InputStreamReader(System.in))).readLine());
+	    }
+	    else	      		// when user passed a command line argument
+	    	s = args[0];
+	    s.toUpperCase();
         for (int i = 0; i < s.length(); ++i)
         {
             if (s.charAt(i) != ' ')
@@ -39,35 +64,27 @@ public class Morse_sound
                 for (int j = 0; j < code.length(); ++j)
                 {
                     System.out.print(code.charAt(j));
-                    Thread.sleep(100);
                     if (code.charAt(j) == '.')
                     {
-                        play("dot.wav");
-                        Thread.sleep(25);
+                        play(home+"dot.wav");
+                        Thread.sleep(ONE_UNIT);
                     }
                     else if (code.charAt(j) == '_')
                     {
-                        play("dash.wav");
-                        Thread.sleep(150);
+                        play(home+"dash.wav");
+                        Thread.sleep(3 * ONE_UNIT);
                     }
+		            Thread.sleep(ONE_UNIT);
                 }
+		        Thread.sleep(2 * ONE_UNIT);
                 System.out.print(" ");
             }
-            else
+            else if (s.charAt(i) == ' ')
             {
-                System.out.print("\b/");
-                Thread.sleep(350);
+                System.out.print("\n");
+                Thread.sleep(4 * ONE_UNIT);
             }
         }
-        Thread.sleep(1000);
-        System.out.println("\n");
-        final String os = System.getProperty("os.name");
-        if (!os.contains("Windows"))
-        {
-            //new ProcessBuilder("cmd", "/c", "pause").inheritIO().start().waitFor();
-            //new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        }
-        else
-            Runtime.getRuntime().exec("clear");
+        System.out.println("\n");        
     }
 }
