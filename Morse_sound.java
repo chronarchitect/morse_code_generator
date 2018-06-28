@@ -37,7 +37,7 @@ public class Morse_sound
 	    // works on *nix and Windows
 	    java.nio.file.Path path = java.nio.file.Paths.get(home, "sound");	
 			// *.wav files to be stored in "sound" folder in the home directory
-            // Windows - C:\Users\USERNAME\sound\ (in the drive where Windows is installed
+            		// Windows - C:\Users\USERNAME\sound\ (in the drive where Windows is installed
 			// *nix - /home/USERNAME/sound/
 	    //boolean directoryExists = java.nio.file.Files.exists(path);
 	    home = path + "";
