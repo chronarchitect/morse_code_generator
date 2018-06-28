@@ -49,11 +49,12 @@ def main():
                 if i == '.':
                     pygame.mixer.music.load(os.path.join('sounds','dot.wav'))
                     pygame.mixer.music.play()
-                    time.sleep(2 * ONE_UNIT)
+                    time.sleep(ONE_UNIT)
                 elif i == '-':
                     pygame.mixer.music.load(os.path.join('sounds','dash.wav'))
                     pygame.mixer.music.play()
-                    time.sleep(4 * ONE_UNIT)
+                    time.sleep(3 * ONE_UNIT)
+                time.sleep(ONE_UNIT)
             print(' ', end='', flush=True)
             time.sleep(2 * ONE_UNIT)
 
