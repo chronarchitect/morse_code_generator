@@ -1,6 +1,7 @@
 import pygame
 import time
 import sys
+import os
 
 pygame.init()
 
@@ -46,11 +47,11 @@ def main():
             for i in CODE[char.upper()]:
                 print(i, end='', flush=True)
                 if i == '.':
-                    pygame.mixer.music.load('dot.wav')
+                    pygame.mixer.music.load(os.path.join('sounds','dot.wav'))
                     pygame.mixer.music.play()
                     time.sleep(2 * ONE_UNIT)
                 elif i == '-':
-                    pygame.mixer.music.load('dash.wav')
+                    pygame.mixer.music.load(os.path.join('sounds','dash.wav'))
                     pygame.mixer.music.play()
                     time.sleep(4 * ONE_UNIT)
             print(' ', end='', flush=True)
