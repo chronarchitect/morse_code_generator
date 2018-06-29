@@ -1,4 +1,4 @@
-// Test on Windows 10 and Ubuntu 18.04 (Oracle jdk 1.8.0_131 and above) on June 29 2018
+// Tested on Windows 10 and Ubuntu 18.04 (Oracle jdk 1.8.0_131 and above) on June 29 2018
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
