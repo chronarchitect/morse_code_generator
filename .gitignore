@@ -94,4 +94,4 @@ main.py
 __pycache__/
 
 # Java .class files
-.class
+*.class
