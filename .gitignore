@@ -93,5 +93,5 @@ ENV/
 main.py
 __pycache__/
 
-# Java class files
-.class
+# Java .class files
+*.class

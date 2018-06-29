@@ -32,26 +32,25 @@ public class Morse_sound
 
     public static void main(String[] args)throws Exception
     {
-        //final String os = System.getProperty("os.name");
-        String home = System.getProperty("user.home");
-
         // inserts correct file path separator on Linux and Windows
         // works on Linux and Windows
-        Path path = Paths.get(home, "sound","d");	
-        // *.wav files to be stored in "sound" folder in the home directory
-        // Windows - C:\Users\USERNAME\sound\ (in the drive where Windows is installed)
-        // Linux - /home/USERNAME/sound/
-        //boolean directoryExists = java.nio.file.Files.exists(path);
-        home = path + "";
+		// Converting Path object to String using normalize() and toString()
+        String dot = Paths.get("sounds","dot.wav").normalize().toString();
+		String dash = Paths.get("sounds", "dash.wav").normalize().toString();
 
         String s, code = "";
-        if (args.length==0)	 // when user didn't pass a command line argument
+        if (args.length == 0)	 // when user didn't pass a command line argument
         {
             System.out.print("\nEnter a message : ");
             s = ((new BufferedReader(new InputStreamReader(System.in))).readLine());
         }
-        else	      		// when user passed a command line argument
+        else if (args.length == 1)	      		// when user passed a command line argument
             s = args[0];
+		else {		// Too many arguments
+			System.out.println("Too many arguments\nUsage:\tjava Morse_sound [MESSAGE]\n\tor\n\tjava Morse_sound");
+			System.exit(1);
+			s = " ";
+		}
 
         s = s.toUpperCase();
         for (int i = 0; i < s.length(); ++i)
@@ -64,12 +63,12 @@ public class Morse_sound
                     System.out.print(code.charAt(j));
                     if (code.charAt(j) == '.')
                     {
-                        play(home+"ot.wav");
+                        play(dot);
                         Thread.sleep(ONE_UNIT);
                     }
                     else if (code.charAt(j) == '_')
                     {
-                        play(home+"ash.wav");
+                        play(dash);
                         Thread.sleep(3 * ONE_UNIT);
                     }
                     Thread.sleep(ONE_UNIT);
